@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
-import router from "./routes/EventRoutes";
+import eventRouter from "./routes/EventRoutes";
+import authRouter from "./routes/AuthRoutes";
 import cors from "cors";
 
 dotenv.config();
@@ -12,7 +13,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/events", router);
+app.use("/api/events", eventRouter);
+app.use("/api/auth", authRouter);
 
 app.get("/", (_req, res) => {
   res.send({
